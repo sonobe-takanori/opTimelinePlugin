@@ -35,7 +35,7 @@ var gorgon = {
             <a href="#timeline-${id}" class="timeline-comment-link">コメントする</a>
           </div>
           <!--Nice Plugin -->
-          <a href="/nice/list/A/${id}"><span class="nice-list" data-nice-id="${id}">いいね！</span></a>
+          <a><span class="nice-list" data-nice-id="${id}">いいね！</span></a>
           <a><span class="nice-cancel" data-nice-id="${id}" style="display: none;">いいね！を取り消す&nbsp;</span></a>
           {{if member.self==false}}<a><span class="nice-post" data-nice-id="${id}" member-id="${member.id}"><i class="icon-thumbs-up"></i>&nbsp;&nbsp;&nbsp;</span></a>{{/if}}
           </div>
@@ -69,7 +69,7 @@ var gorgon = {
                 </div>
                 <!-- nice Plugin -->
                 <div class="nice-comment">
-                <a href="/nice/list/A/${id}"><span class="nice-list" data-nice-id="${id}">いいね！</span></a>
+                <a><span class="nice-list" data-nice-id="${id}">いいね！</span></a>
                 <a><span class="nice-cancel" data-nice-id="${id}" style="display: none;">いいね！を取り消す&nbsp;</span></a>
 {{if member.self==false}}<a><span class="nice-post" data-nice-id="${id}" member-id="${member.id}"><i class="icon-thumbs-up"></i>&nbsp;&nbsp;&nbsp;</span></a>{{/if}}
 <div class="nice-list-member" data-nice-id="${id}"></div>
