@@ -39,6 +39,10 @@ a.screen-name:link {
 
 #timeline-textarea {
   width: 500px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 #timeline-submit-loader {
@@ -126,6 +130,7 @@ a.screen-name:link {
   width: 810px;
   padding: 10px;
   border-top: 2px solid #DDD;
+  overflow: hidden;
 }
 
 .timeline-post-member-image {
@@ -159,6 +164,10 @@ a.screen-name:link {
 
 .timeline-member-name-large {
   width: 760px;
+  margin-left: 50px;
+}
+
+.timeline-member-name {
   display: block;
   padding: 0 5px;
 }
@@ -210,7 +219,6 @@ a.screen-name:link {
   display: block;
   padding: 5px;
   border-top: 1px solid #DDD;
-  min-height: 52px;
 }
 
 .timeline-post-comment-member-image {
@@ -224,11 +232,11 @@ a.screen-name:link {
   float: right;
   width: 410px;
   min-height: 33px;
+  margin-left: 40px;
 }
 
 .timeline-post-comment-name-and-body {
   display: inline;
-  float: left;
   font-size: 12px;
 }
 
