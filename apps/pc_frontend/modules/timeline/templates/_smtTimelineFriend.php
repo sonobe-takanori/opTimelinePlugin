@@ -1,17 +1,12 @@
-<?php use_helper('opUtil', 'Javascript', 'opAsset') ?>
+<?php use_helper('Javascript', 'opUtil', 'opAsset') ?>
 <script type="text/javascript">
 //<![CDATA[
 var gorgon = {
-      'target': 'community',
-      'target_id': <?php echo $id; ?>,
-      'count': '20',
-      'post': {
-        'foreign': 'community',
-        'foreignId': '<?php echo $id; ?>'
-      }
-    };
-var viewPhoto = '<?php echo $viewPhoto ?>';
+  'target': 'friend'
+};
+
 var MAXLENGTH = 140;
+var viewPhoto = '<?php echo $viewPhoto ?>';
 
 var fileMaxSizeInfo = {
   'format': '<?php echo $fileMaxSize['format'] ?>',
@@ -39,17 +34,18 @@ var fileMaxSizeInfo = {
           <div class="timeline-post-content">
             <div class="timeline-member-name">
               <a href="${member.profile_url}">{{if member.screen_name}} ${member.screen_name} {{else}} ${member.name} {{/if}}</a>
-              <div class="timestamp timeago" title="${created_at}"></div>
+              <a href="<?php echo url_for('@homepage', array('absolute' => true)) ?>timeline/show/id/${id}">
+                <div class="timestamp timeago" title="${created_at}"></div>
+              </a>
             </div>
             <div class="timeline-post-body" id="timeline-body-context-${id}">
               {{html body_html}}
             </div>
           </div>
 
-
           <div class="timeline-post-control">
             <a href="#timeline-${id}" class="timeline-comment-link">コメントする</a>
-            <span class="timeline-post-control-show">
+            <span class="timeline-public-flag-show">
               {{if public_status == 'friend' }}
               <span class="icon-lock"></span>
               <span class="public-flag"><?php echo $op_term['my_friend'] ?>まで</span>
@@ -68,7 +64,6 @@ var fileMaxSizeInfo = {
               </span>
             </div>
           </a>
-
           <div class="timeline-post-comments" id="commentlist-${id}">
 
             <div id="timeline-post-comment-form-${id}" class="timeline-post-comment-form">
@@ -94,25 +89,44 @@ var fileMaxSizeInfo = {
               </div>
               <div class="timeline-post-comment-content">
                 <div class="timeline-post-comment-name-and-body">
-                <a href="${member.profile_url}">{{if member.screen_name}} ${member.screen_name} {{else}} ${member.name} {{/if}}</a>
+                  <a href="${member.profile_url}">{{if member.screen_name}} ${member.screen_name} {{else}} ${member.name} {{/if}}</a>
                 </div>
               </div>
-              <div class="timeline-post-comment-control timestamp timeago" title="${created_at}"></div>
+              <div class="timestamp timeline-post-control timeago" title="${created_at}"></div>
               <div class="timeline-post-comment-body">
               {{html body_html}}
               </div>
             </div>
 </script>
 
-<div class="row">
-<div class="gadget_header span12"><?php echo $community->getName() ?><?php echo $op_term['activity'] ?></div>
+<div style="display: none;">
+<div id="timeline-warning">
+  <div class="modal-header">
+    <h3>投稿エラー</h3>
+  </div>
+  <div class="modal-body">
+    <p>本文が入力されていません</p>
+  </div>
+</div>
 </div>
 
-<div id="timeline-list" class="span12" data-post-baseurl="<?php echo url_for('@homepage', array('absolute' => true)); ?>" data-last-id="" data-loadmore-id="" style="margin-left: 0px;">
+<div class="row">
+  <div class="gadget_header span12"><?php echo __('%Activity% of %Friend%') ?></div>
 </div>
+
+<div class="timeline" style="margin-left: 0px;">
+  <div id="timeline-list" data-last-id="" data-loadmore-id="" style="margin-left: 0px;">
+
+  </div>
+</div>
+
+
 <div id="timeline-list-loader" class="row span12 center show" style="margin-top: 20px; margin-bottom: 20px;">
 <?php echo op_image_tag('ajax-loader.gif', array('alt' => 'Now Loading...')) ?>
 </div>
+
+<hr class="toumei">
 <div class="row">
   <button class="span12 btn small" id="gorgon-loadmore">もっと読む</button>
 </div>
+
