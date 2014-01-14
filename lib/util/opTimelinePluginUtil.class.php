@@ -47,17 +47,11 @@ class opTimelinePluginUtil
 
   public static function getFileSizeMax()
   {
-    $maxFileSize = min(
+    return min(
+            (int) opTimelineDb::findVariableOfMySQL('max_allowed_packet'),
             self::calcConfigSizeToByte(ini_get('post_max_size')),
             self::calcConfigSizeToByte(ini_get('upload_max_filesize')),
             self::DB_MAX_FILE_SIZE);
-
-    if (opTimelineDb::isMySQL())
-    {
-      return min($maxFileSize, (int) opTimelineDb::findVariableOfMySQL('max_allowed_packet'));
-    }
-
-    return $maxFileSize;
   }
 
   const ONE_KB = 1024;
@@ -94,4 +88,16 @@ class opTimelinePluginUtil
     }
     return $ret;
   }
+
+  public static function getUploadAllowImageTypeList()
+  {
+    return array(
+        'jpeg',
+        'pjpeg', //IEだとjpegがpjpegになる
+        'gif',
+        'png',
+        'x-png', //IEだとpngがx-pngになる
+    );
+  }
+
 }

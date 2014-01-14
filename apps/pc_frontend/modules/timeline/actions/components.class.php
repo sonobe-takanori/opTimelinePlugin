@@ -63,20 +63,6 @@ class timelineComponents extends sfComponents
     $this->community = Doctrine::getTable('Community')->find($communityId);
   }
 
-  public function executeTimelineFriend(sfWebRequest $request)
-  {
-    $this->getResponse()->addStyleSheet('/opTimelinePlugin/css/jquery.colorbox.css');
-    $this->getResponse()->addJavascript('/opTimelinePlugin/js/jquery.colorbox.js', 'last');
-    $this->getResponse()->addJavascript('/opTimelinePlugin/js/jquery.timeline.js', 'last');
-
-    $this->publicFlags = Doctrine::getTable('ActivityData')->getPublicFlags();
-    $this->viewPhoto = opTimeline::getViewPhoto();
-
-    $this->setFileMaxSize();
-
-    return sfView::SUCCESS;
-  }
-
   public function executeSmtTimeline(sfWebRequest $request)
   {
     $this->viewPhoto = opTimeline::getViewPhoto();
@@ -167,15 +153,6 @@ class timelineComponents extends sfComponents
     $this->setFileMaxSize();
     $communityId = $request->getParameter('id');
     $this->community = Doctrine::getTable('Community')->find($communityId);
-  }
-
-  public function executeSmtTimelineFriend(sfWebRequest $request)
-  {
-    $this->viewPhoto = opTimeline::getViewPhoto();
-
-    $this->setFileMaxSize();
-
-    return sfView::SUCCESS;
   }
 }
 

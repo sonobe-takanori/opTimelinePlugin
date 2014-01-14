@@ -44,6 +44,8 @@ var fileMaxSizeInfo = {
             <div class="timeline-post-body" id="timeline-body-context-${id}">
               {{html body_html}}
             </div>
+            </div>
+
           </div>
 
 

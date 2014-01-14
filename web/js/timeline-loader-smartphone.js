@@ -136,19 +136,12 @@ $(function(){
     });
   });
 
-  $('#tosaka_postform_body').on('input propertychange', function() {
+  $('#tosaka_postform_body').keyup( function() {
     lengthCheck($(this), $('#timeline_postform_submit'));
   });
 
-  $(document).on('input propertychange', '.timeline-post-comment-form-input', function() {
+  $(document).on('keyup', '.timeline-post-comment-form-input', function() {
     lengthCheck($(this), $('button[data-timeline-id=' + $(this).attr('data-timeline-id') + ']'));
-  });
-
-  // アクティビティの投稿を検知
-  $(document).ajaxSuccess(function(event, xhr, settings) {
-    if (0 === settings.url.indexOf(openpne.apiBase + 'activity/post.json')) {
-      timelineAllLoad();
-    }
   });
 
   $('#timeline-submit-upload').change(function() {

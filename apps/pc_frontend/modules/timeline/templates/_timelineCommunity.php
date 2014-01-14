@@ -46,11 +46,7 @@ $(function(){
     $('.timeline-postform').css('padding-bottom', '50px');
     $('#timeline-textarea').attr('rows', '3');
     $('#timeline-submit-area').css('display', 'inline');
-
-    var ua = navigator.userAgent;
-    var androidDefaultBrowser = -1 !== ua.indexOf('Android') && -1 !== ua.indexOf('WebKit') && -1 === ua.indexOf('Chrome');
-
-    if (($.browser.msie && $.browser.version > 6) || $.browser.opera || androidDefaultBrowser)
+    if ($.browser.msie && $.browser.version > 6 || $.browser.opera)
     {
       $('#timeline-upload-photo-button').remove();
       $('#timeline-submit-upload').css('display', 'inline');

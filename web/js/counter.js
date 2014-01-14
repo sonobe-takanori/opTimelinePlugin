@@ -15,7 +15,7 @@ $(function ()
     var counter = $('#counter');
 
     counter.text(allowed);
-    textarea.on('input propertychange', function ()
+    textarea.keyup(function ()
       {
          var bodyLen = $(this).val().length;
          if ($(this).val().match(/\n/gm))
